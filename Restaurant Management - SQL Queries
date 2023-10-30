@@ -1,0 +1,114 @@
+// Creating first table Customer:
+Create table Customer ( CID number (4), Custname varchar (20), Contact number (10) );
+
+// Display table structure:
+Desc Customer;  
+
+// Inserting values into Customer:
+
+Insert into Customer values(101,’Preeti’,7456764764);
+Insert into Customer values(102,’Satish’,8765745654);
+Insert into Customer values(103,’Rohini’,7647646766);
+Insert into Customer values(104,’Rohit’,7456764764);
+Insert into Customer values(105,’Chetan’,9856456789);
+Insert into Customer values(106,’Kranti’,8765498999);
+Insert into Customer values(107,’Shruti’,9924352435);
+Insert into Customer values(108,’Vikram’,6745323455);
+Insert into Customer values(109,’Kirti’,9987234567);
+Insert into Customer values(110,’Sayali’,8765480988);
+Insert into Customer values(111,’Vedant’,9902343457);
+Insert into Customer values(112,’Aditya’,2237453629);
+Insert into Customer values(113,’Karan’,7735463737);
+Insert into Customer values(114,’Nitesh’,8765324352);
+Insert into Customer values(115,’Subhash’,8745362726);
+Insert into Customer values(116,’Ishaan’,5563728493);
+Insert into Customer values(117,’Rudra’,6634253647);
+Insert into Customer values(118,’Komal’,1239675849);
+Insert into Customer values(119,’Shiva’,2364758494);
+Insert into Customer values(120,’Keshav’,7754656908);
+
+// Display table Customer:  
+Select * from Customer;
+
+// To delete the existing table:
+Drop table Orders; - As “Orders” was already created and I wanted to use this name.
+ 
+// Creating second table Orders:
+Create table Orders ( OID varchar (4), CID number (4), OrdDet varchar (20), OQty number (4) );
+
+// Display table structure:
+Desc Orders;  
+
+//Inserting values into Orders:
+Insert into Orders values (‘Or1’,101,’Pizza’,2 );
+Insert into Orders values (‘Or2’,102,’Coffee’,4 );
+Insert into Orders values (‘Or2’,102,’Burger’,1 );
+Insert into Orders values (‘Or3’,103,’Pasta’,5 );
+Insert into Orders values (‘Or3’,103,’Momos’,2 );
+Insert into Orders values (‘Or4’,104,’Coffee’,2 );
+Insert into Orders values (‘Or5’,105,’Pizza’,1 );
+Insert into Orders values (‘Or6’,106,’Fries’,2 );
+Insert into Orders values (‘Or6’,106,’Burger’,2 );
+Insert into Orders values (‘Or7’,107,’Pizza’,6);
+Insert into Orders values (‘Or8’,108,’Chilli Toast’,8 );
+Insert into Orders values (‘Or8’,108,’Coffee’,5 );
+Insert into Orders values (‘Or9’,103,’Pizza’,2 );
+Insert into Orders values (‘Or10’,101,’Fries’,4 );
+Insert into Orders values (‘Or11’,109,’Garlic Bread’,2 );
+
+// Display table Order: 
+Select * from Order;
+
+// Creating third table Bill:
+Create table Bill (Bno varchar (4), CID number (4),BAmt number (5));
+
+//Inserting values into Bill:
+
+Insert into Bill values (‘B1’, 101, 500);
+Insert into Bill values ('B2', 102, 1000);
+Insert into Bill values ('B3', 103, 800);
+Insert into Bill values ('B4', 104, 1600);
+Insert into Bill values ('B5', 105, 2000);
+Insert into Bill values ('B6', 106, 200);
+Insert into Bill values ('B7', 107, 500);
+Insert into Bill values ('B8', 108, 1000);
+Insert into Bill values ('B9', 109, 200);
+Insert into Bill values ('B10', 103, 500);
+
+//Display table Bill:  
+Select * from Bill;
+
+//Display the Customer details with Orders details using inner join. 
+Select Customer.CID,Customer.Custname,Customer.Contact,Orders.OrdDet,Orders.Oqty from Customer inner join orders on Customer.CID = Orders.CID;
+
+//Display the Bill & customer details using Left join.
+Select Customer.CID,Customer.Custname,Customer.Contact,Bill.Bno,Bill.BAmt from Customer left join bill on Customer.CID = Bill.CID;
+
+//Display the orders of pizza.
+select * from Orders where OrdDet = 'Pizza';
+
+//Display the bills greater than 1000.
+select * from Bill where BAmt >=1000;
+
+//How many times pizza is ordered?
+select sum(OQty) as OrderQuantity from Orders where OrdDet = 'Pizza';
+ORDERQUANTITY
+-------------
+            9
+// Display the customer & Bill details using right join:
+select customer.cid,customer.custname,bill.Bno,Bill.BAmt from customer right join bill on customer.cid = bill.cid;
+
+       CID CUSTNAME             BNO        BAMT
+---------- -------------------- ---- ----------
+       101 Preeti               B1          500
+       102 Satish               B2         1000
+       103 Rohini               B3          800
+       103 Rohini               B10         500
+       104 Rohit                B4         1600
+       105 Chetan               B5         2000
+       107 Shruti               B7          500
+       108 Vikram               B8         1000
+       106 Kranti               B6          200
+       109 Kirti                B9          200
+
+//Commit; To save the updated data. 
